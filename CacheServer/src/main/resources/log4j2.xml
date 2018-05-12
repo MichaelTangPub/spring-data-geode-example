@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="FATAL" shutdownHook="disable" packages="org.apache.geode.internal.logging.log4j">
+  <Properties>
+    <Property name="geode-pattern">[%level{lowerCase=false} %date{yyyy/MM/dd HH:mm:ss.SSS z} &lt;%thread&gt; tid=%tid] %C: %message%n%throwable%n</Property>
+    <Property name="geode-default">true</Property>
+  </Properties>
+  <Appenders>
+    <Console name="STDOUT" target="SYSTEM_OUT">
+      <PatternLayout pattern="${geode-pattern}"/>
+    </Console>
+    <RollingFile name="FILE" fileName="target/CacheServer.log"
+                     filePattern="'.'yyyy-MM" Append="true" >
+          <PatternLayout pattern="%-5p:%d:%c{1} [%x] - %m%n"/>
+          <Policies>
+              <SizeBasedTriggeringPolicy size="16 MB"/>
+          </Policies>
+          <DefaultRolloverStrategy fileIndex="min" max="16"/>
+      </RollingFile>
+  </Appenders>
+  <Loggers>
+    <Logger name="com.gemstone" level="INFO" additivity="true"/>
+    <Logger name="org.apache.geode" level="INFO" additivity="true">
+    <filters>
+      <MarkerFilter marker="GEODE_VERBOSE" onMatch="DENY" onMismatch="NEUTRAL"/>
+    </filters>
+    </Logger>
+    <Logger name="org.jgroups" level="FATAL" additivity="true"/>
+    <Logger name="org.eclipse.jetty" level="FATAL" additivity="true"/>
+    <Logger name="example" level="DEBUG" additivity="true" />
+    <Root level="INFO">
+      <AppenderRef ref="STDOUT"/>
+      <AppenderRef ref="FILE"/>
+    </Root>
+  </Loggers>
+</Configuration>
