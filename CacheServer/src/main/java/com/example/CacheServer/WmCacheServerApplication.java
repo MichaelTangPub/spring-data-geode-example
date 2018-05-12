@@ -7,12 +7,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.gemfire.config.annotation.CacheServerApplication;
-import org.springframework.data.gemfire.config.annotation.EnableCacheServer;
-//import org.springframework.data.gemfire.config.annotation.EnableLocator;
 
 @SpringBootApplication
-@CacheServerApplication(name = "CacheServer1", autoStartup = true, locators="localhost[10334]", port = 41415)
-@EnableCacheServer(name = "EnableServer1", autoStartup = true, hostnameForClients = "hostname1", port = 41414)
+@CacheServerApplication(name = "SpringBootGemFireServer", locators = "localhost[10334]")
+//@EnableCacheServer(name = "EnableServer1", autoStartup = true, hostnameForClients = "hostname1", port = 41414)
 @ImportResource("classpath:spring-cache-context-cluster-side.xml")
 //@EnableLocator
 //@EnableManager
