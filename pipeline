@@ -3,6 +3,7 @@ stage('Pipeline sample') {
 		TOOLS_WORKSPACE = "../../${JOB_NAME}@script/tools"
 		println(WORKSPACE)
 		echo "hello"
+		sleep(100)
 	}
 }
 stage('stage 2') {
