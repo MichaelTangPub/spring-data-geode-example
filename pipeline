@@ -1,6 +1,7 @@
 stage('Pipeline sample') {
 	node('master') {
 		TOOLS_WORKSPACE = "../../${JOB_NAME}@script/tools"
+		println(WORKSPACE)
 		echo "hello"
 	}
 }
